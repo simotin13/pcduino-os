@@ -1,6 +1,6 @@
 #include "gpio.h"
 
-int sunxi_gpio_set_cfgpin(uint32_t pin, uint32_t val)
+int gpio_set_cfgpin(uint32_t pin, uint32_t val)
 {
 	uint32_t cfg;
 	uint32_t bank = GPIO_BANK(pin);
@@ -14,7 +14,7 @@ int sunxi_gpio_set_cfgpin(uint32_t pin, uint32_t val)
 	return 0;
 }
 
-void sunxi_gpio_set_pull(uint32_t pin, uint32_t val)
+void gpio_set_pull(uint32_t pin, uint32_t val)
 {
 	uint32_t cfg;
 	uint32_t bank = GPIO_BANK(pin);
@@ -28,7 +28,7 @@ void sunxi_gpio_set_pull(uint32_t pin, uint32_t val)
 	return;
 }
 
-void sunxi_gpio_output(uint32_t pin, uint32_t val)
+void gpio_output(uint32_t pin, uint32_t val)
 {
 	uint32_t dat;
 	uint32_t bank = GPIO_BANK(pin);
@@ -44,7 +44,7 @@ void sunxi_gpio_output(uint32_t pin, uint32_t val)
 	return;
 }
 
-int sunxi_gpio_input(uint32_t pin)
+int gpio_input(uint32_t pin)
 {
 	uint32_t dat;
 	uint32_t bank = GPIO_BANK(pin);
@@ -57,20 +57,20 @@ int sunxi_gpio_input(uint32_t pin)
 
 int gpio_direction_input(uint32_t gpio)
 {
-	sunxi_gpio_set_cfgpin(gpio, GPIO_INPUT);
-	return sunxi_gpio_input(gpio);
+	gpio_set_cfgpin(gpio, GPIO_INPUT);
+	return gpio_input(gpio);
 }
 
 void gpio_direction_output(uint32_t gpio, uint32_t value)
 {
-	sunxi_gpio_set_cfgpin(gpio, GPIO_OUTPUT);
-	sunxi_gpio_output(gpio, value);
+	gpio_set_cfgpin(gpio, GPIO_OUTPUT);
+	gpio_output(gpio, value);
 }
 
 void gpio_init(void)
 {
-	sunxi_gpio_set_cfgpin(GPB(22), SUN4I_GPB_UART0);
-	sunxi_gpio_set_cfgpin(GPB(23), SUN4I_GPB_UART0);
-	sunxi_gpio_set_pull(GPB(23), GPIO_PULL_UP);
+	gpio_set_cfgpin(GPB(22), SUN4I_GPB_UART0);
+	gpio_set_cfgpin(GPB(23), SUN4I_GPB_UART0);
+	gpio_set_pull(GPB(23), GPIO_PULL_UP);
 }
 

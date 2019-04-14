@@ -18,7 +18,7 @@
 
 #define GPIO_NEXT(__gpio) ((__gpio##_START) + GPIO_BANK_SIZE)
 
-enum sunxi_gpio_number
+enum gpio_number
 {
 	GPIO_A_START = 0,
 	GPIO_B_START = GPIO_A_START + GPIO_BANK_SIZE,
@@ -81,11 +81,11 @@ typedef struct A10_GPIO_REGS
 // Function prototype
 // =============================================================================
 extern void gpio_init(void);
-extern int sunxi_gpio_set_cfgpin(uint32_t pin, uint32_t val);
+extern int gpio_set_cfgpin(uint32_t pin, uint32_t val);
 extern int gpio_direction_input(uint32_t gpio);
 extern void gpio_direction_output(uint32_t gpio, uint32_t value);
-extern int sunxi_gpio_input(uint32_t pin);
-extern void sunxi_gpio_output(uint32_t pin, uint32_t val);
-extern void sunxi_gpio_set_pull(uint32_t pin, uint32_t val);
+extern int gpio_input(uint32_t pin);
+extern void gpio_output(uint32_t pin, uint32_t val);
+extern void gpio_set_pull(uint32_t pin, uint32_t val);
 
 #endif // __GPIO_H__
