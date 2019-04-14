@@ -4,13 +4,13 @@
 
 void __attribute__((section(".start"))) __attribute__((naked)) start(void)
 {
-	asm volatile("b     main             \n"
+	asm volatile("b     main         \n"
 		     ".long 0xffffffff       \n"
 		     ".long 0xffffffff       \n"
 		     ".long 0xffffffff       \n");
 }
 
-int main(void)
+void main(void)
 {
 	gpio_init();
 	uart0_init();
@@ -24,5 +24,5 @@ int main(void)
 
 	while(1);
 
-	return 0;
+	return;
 }

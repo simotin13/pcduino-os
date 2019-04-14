@@ -1,8 +1,6 @@
 #include "common.h"
 #include "uart.h"
 
-
-
 static void clock_init_uart_legacy(void)
 {
 	/* Open the clock gate for UART0 */
@@ -35,11 +33,13 @@ void uart0_putc(char c)
 	writel(c, UART0_THR);
 }
 
-void uart0_puts(const char *s)
+void uart0_puts(const char *str)
 {
-	while (*s) {
-		if (*s == '\n')
+	while (*str) {
+		if (*str == '\n')
+		{
 			uart0_putc('\r');
-		uart0_putc(*s++);
+		}
+		uart0_putc(*str++);
 	}
 }
