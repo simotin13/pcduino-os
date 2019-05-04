@@ -1,9 +1,12 @@
 CC=arm-none-eabi-gcc
+AS=arm-none-eabi-as
+
 
 CFLAGS = \
 	-marm -fpic -Wall -fno-common -fno-builtin -ffreestanding -nostdinc	\
 	-fno-strict-aliasing -mno-thumb-interwork -fno-stack-protector -fno-toplevel-reorder	\
 	-Wstrict-prototypes -Wno-format-nonliteral -Wno-format-security -nostdlib
+
 
 SRCS = \
 	boot.c		\
@@ -22,6 +25,9 @@ write	:
 	sudo dd if=${TARGET}.sunxi of=${SD_CARD_PATH} bs=1024 seek=8
 	sync; sync; sync;
 	sync; sync; sync;
+
+asm	:
+	${AS} mmu.asm -o mmu.o
 
 clean	:
 	rm -f ${TARGET}.elf ${TARGET}.bin ${TARGET}.sunxi
